@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="no_guardianNews">No news found.</string>
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="near_the">Near the</string>
+
+    <string name="title">example of title</string>
+    <string name="date">2015-12-29</string>
+    <string name="section">example of section</string>
+    <string name="author">example of author</string>
+    <string name="thumbnail">example of thumbnail</string>
+</resources>

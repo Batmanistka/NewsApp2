@@ -8,4 +8,141 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="imageViewVertical">
+        <item name="android:layout_width">328dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="imageViewLand">
+        <item name="android:layout_width">551dp</item>
+        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="firstLinearVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@color/my_light_gray</item>
+    </style>
+
+    <style name="firstLinearLand">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginLeft">23dp</item>
+        <item name="android:layout_marginRight">23dp</item>
+        <item name="android:background">@color/my_light_gray</item>
+    </style>
+
+    <style name="secondLinearVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:background">@color/my_light_gray</item>
+    </style>
+
+    <style name="secondLinearLand">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">23dp</item>
+        <item name="android:layout_marginRight">23dp</item>
+        <item name="android:background">@color/my_light_gray</item>
+    </style>
+
+    <style name="sectionVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="sectionLand">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titleVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="titleLand">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="dateVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/my_light_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="dateLand">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:background">@color/my_light_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="authorVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/my_light_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="authorLand">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:background">@color/my_light_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

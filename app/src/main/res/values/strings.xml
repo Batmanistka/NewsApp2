@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">NewsApp</string>
-    <string name="no_guardianNews">No news found.</string>
+    <string name="no_guardianNews">Currently there are no new stories. Please come later and check for all new stories.</string>
     <string name="no_internet_connection">No internet connection.</string>
-    <string name="near_the">Near the</string>
 
     <string name="title">example of title</string>
     <string name="date">2015-12-29</string>

@@ -28,7 +28,7 @@
             style="@style/secondLinearLand">
 
             <TextView
-                android:id="@+id/published_text_view"
+                android:id="@+id/date_text_view"
                 android:text="@string/date"
                 style="@style/dateLand"/>
 

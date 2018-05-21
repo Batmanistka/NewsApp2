@@ -5,15 +5,15 @@ import android.graphics.Bitmap;
 public class GuardianNews {
 
     private String mTitle;
-    private String mPublished;
+    private String mDate;
     private String mSection;
     private String mAuthor;
     private Bitmap mThumbnail;
     private String mUrl;
 
-    public GuardianNews(String mTitle, String mPublished, String mSection, String mAuthor, Bitmap mThumbnail, String mUrl) {
+    public GuardianNews(String mTitle, String mDate, String mSection, String mAuthor, Bitmap mThumbnail, String mUrl) {
         this.mTitle = mTitle;
-        this.mPublished = mPublished;
+        this.mDate = mDate;
         this.mSection = mSection;
         this.mAuthor = mAuthor;
         this.mThumbnail = mThumbnail;
@@ -24,8 +24,8 @@ public class GuardianNews {
         return mTitle;
     }
 
-    public String getmPublished() {
-        return mPublished.substring(0, 10);
+    public String getmDate() {
+        return mDate.substring(0, 10);
     }
 
     public String getmSection() {

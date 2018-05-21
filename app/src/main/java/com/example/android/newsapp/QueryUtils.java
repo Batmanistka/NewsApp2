@@ -79,7 +79,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -146,7 +146,7 @@ public final class QueryUtils {
                 JSONObject fields = article.getJSONObject("fields");
                 String title = fields.getString("headline");
                 String author = fields.getString("byline");
-                String published = fields.getString("firstPublicationDate");
+                String date = fields.getString("firstPublicationDate");
                 String url = fields.getString("shortUrl");
                 Bitmap thumbnail = null;
                 try {
@@ -154,10 +154,10 @@ public final class QueryUtils {
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Error getting thumbnail", e);
                 }
-                guardianNews.add(new GuardianNews(title, published, section, author, thumbnail, url));
+                guardianNews.add(new GuardianNews(title, date, section, author, thumbnail, url));
             }
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
 
         return guardianNews;

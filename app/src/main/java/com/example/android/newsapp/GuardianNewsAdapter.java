@@ -19,7 +19,7 @@ import java.util.List;
 public class GuardianNewsAdapter extends ArrayAdapter<GuardianNews> {
 
     private TextView titleTexView;
-    private TextView publishedTexView;
+    private TextView dateTexView;
     private TextView sectionTextView;
     private TextView authorTexView;
     private ImageView thumbnailImageView;
@@ -43,8 +43,8 @@ public class GuardianNewsAdapter extends ArrayAdapter<GuardianNews> {
         titleTexView = (TextView) listItemView.findViewById(R.id.title_text_view);
         titleTexView.setText(currentGuardianNews.getmTitle());
 
-        publishedTexView = (TextView) listItemView.findViewById(R.id.published_text_view);
-        publishedTexView.setText(currentGuardianNews.getmPublished());
+        dateTexView = (TextView) listItemView.findViewById(R.id.date_text_view);
+        dateTexView.setText(currentGuardianNews.getmDate());
 
         sectionTextView = (TextView) listItemView.findViewById(R.id.section_text_view);
 

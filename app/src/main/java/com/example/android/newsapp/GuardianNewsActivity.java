@@ -5,11 +5,16 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,29 +25,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuardianNewsActivity extends AppCompatActivity
-        implements LoaderCallbacks<List<GuardianNews>> {
+        implements LoaderManager.LoaderCallbacks<List<GuardianNews>> {
 
     private static final String GN_URL =
-            "http://content.guardianapis.com/search?q=news&order-by=newest&page-size=100&show-fields=headline,byline,firstPublicationDate,shortUrl,thumbnail&api-key=test";
-
-    private static final int GUARDIANNEWS_LOADER_ID = 1;
+            "https://content.guardianapis.com/search?";
 
     private GuardianNewsAdapter mNewsAdapter;
-
     private TextView mEmptyStateTextView;
+    ListView guardianNewsListView;
+    View loadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guardian_news_activity);
 
-        ListView guardianNewsListView = (ListView) findViewById(R.id.list);
-
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
-        guardianNewsListView.setEmptyView(mEmptyStateTextView);
-
+        guardianNewsListView = findViewById(R.id.list);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         mNewsAdapter = new GuardianNewsAdapter(this, new ArrayList<GuardianNews>());
         guardianNewsListView.setAdapter(mNewsAdapter);
+        guardianNewsListView.setEmptyView(mEmptyStateTextView);
+        loadingIndicator = findViewById(R.id.loading_indicator);
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = networkInfo != null &&
+                networkInfo.isConnectedOrConnecting();
+        if (isConnected) {
+            getLoaderManager().initLoader(0, null, this);
+        } else {
+            loadingIndicator.setVisibility(View.GONE);
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
 
         guardianNewsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -54,38 +69,103 @@ public class GuardianNewsActivity extends AppCompatActivity
                 startActivity(websiteIntent);
             }
         });
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(GUARDIANNEWS_LOADER_ID, null, this);
-        } else {
-            View loadingIndicator = findViewById(R.id.loading_indicator);
-            loadingIndicator.setVisibility(View.GONE);
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
-        }
     }
 
     @Override
-    public Loader<List<GuardianNews>> onCreateLoader(int i, Bundle bundle) {
-        return new GuardianNewsLoader(this, GN_URL);
+    public Loader<List<GuardianNews>> onCreateLoader(int i, Bundle args) {
+        String TAG = "URI";
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Boolean business = sharedPrefs.getBoolean("business",false);
+        Boolean fashion = sharedPrefs.getBoolean("fashion",false);
+        Boolean games = sharedPrefs.getBoolean("games",false);
+        Boolean lifeandstyle = sharedPrefs.getBoolean("lifeandstyle",false);
+        Boolean money = sharedPrefs.getBoolean("money",false);
+        Boolean science = sharedPrefs.getBoolean("science",false);
+        Boolean sport = sharedPrefs.getBoolean("sport",false);
+        Boolean technology = sharedPrefs.getBoolean("technology",false);
+        Boolean travel = sharedPrefs.getBoolean("travel",false);
+
+        String numArticles = sharedPrefs.getString(
+                getString(R.string.settings_num_articles_key),
+                getString(R.string.settings_num_articles_default));
+
+        Uri baseUri = Uri.parse(GN_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        String sections = "";
+        if(business){
+            sections += "business|";
+        }
+        if(fashion){
+            sections += "fashion|";
+        }
+        if(games){
+            sections += "games|";
+        }
+        if(lifeandstyle){
+            sections += "lifeandstyle|";
+        }
+        if(money){
+            sections += "money|";
+        }
+        if(science){
+            sections += "science|";
+        }
+        if(sport){
+            sections += "sport|";
+        }
+        if(technology){
+            sections += "technology|";
+        }
+        if(travel){
+            sections += "travel|";
+        }
+
+        if(sections.endsWith("|")){
+            sections = sections.substring(0, sections.length()-1) + "";
+        }
+        if (!sections.isEmpty()){
+            uriBuilder.appendQueryParameter("section", sections);
+        }
+
+        uriBuilder.appendQueryParameter("page-size", numArticles);
+        uriBuilder.appendQueryParameter("show-fields", "thumbnail,byline");
+        uriBuilder.appendQueryParameter("api-key", "test");
+        Log.d(TAG, "uriBuilder: " + uriBuilder.toString());
+
+        return new GuardianNewsLoader(this, uriBuilder.toString());
     }
 
     @Override
     public void onLoadFinished(Loader<List<GuardianNews>> loader, List<GuardianNews> guardianNews) {
-        View loadingIndicator = findViewById(R.id.loading_indicator);
-        loadingIndicator.setVisibility(View.GONE);
         mEmptyStateTextView.setText(R.string.no_guardianNews);
         mNewsAdapter.clear();
         if (guardianNews != null && !guardianNews.isEmpty()) {
             mNewsAdapter.addAll(guardianNews);
         }
+        loadingIndicator.setVisibility(View.GONE);
     }
 
     @Override
     public void onLoaderReset(Loader<List<GuardianNews>> loader) {
         mNewsAdapter.clear();
+        getLoaderManager().restartLoader(0, null, this);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

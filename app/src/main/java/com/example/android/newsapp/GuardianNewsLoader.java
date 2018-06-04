@@ -6,7 +6,6 @@ import android.content.Context;
 import java.util.List;
 
 public class GuardianNewsLoader extends AsyncTaskLoader<List<GuardianNews>> {
-
     private String mUrl;
 
     public GuardianNewsLoader(Context context, String url) {
@@ -25,8 +24,7 @@ public class GuardianNewsLoader extends AsyncTaskLoader<List<GuardianNews>> {
             return null;
         }
 
-        List<GuardianNews> guardianNews = QueryUtils.fetchArticlesFromServer(mUrl);
-        return guardianNews;
+        return QueryUtils.fetchArticlesFromServer(mUrl);
     }
 }
 

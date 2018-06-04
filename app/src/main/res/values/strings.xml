@@ -8,4 +8,20 @@
     <string name="section">example of section</string>
     <string name="author">example of author</string>
     <string name="thumbnail">example of thumbnail</string>
+
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Settings</string>
+
+    <string name="settings_num_articles_label">Number of articles</string>
+    <string name="settings_num_articles_key" translatable="false">num_articles</string>
+    <string name="settings_num_articles_default" translatable="false">10</string>
+    <string name="business">Business</string>
+    <string name="fashion">Fashion</string>
+    <string name="games">Games</string>
+    <string name="lifestyle">Lifestyle</string>
+    <string name="money">Money</string>
+    <string name="science">Science</string>
+    <string name="sport">Sport</string>
+    <string name="technology">Technology</string>
+    <string name="travel">Travel</string>
 </resources>

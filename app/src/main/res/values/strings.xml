@@ -15,6 +15,7 @@
     <string name="settings_num_articles_label">Number of articles</string>
     <string name="settings_num_articles_key" translatable="false">num_articles</string>
     <string name="settings_num_articles_default" translatable="false">10</string>
+
     <string name="business">Business</string>
     <string name="fashion">Fashion</string>
     <string name="games">Games</string>

@@ -27,7 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
             bindPreferenceSummaryToValue(numArticles);
         }
 
-
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             String stringValue = newValue.toString();

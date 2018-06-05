@@ -66,8 +66,8 @@ public final class QueryUtils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(15000);
+            urlConnection.setConnectTimeout(20000);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -141,13 +141,15 @@ public final class QueryUtils {
 
             for (int i = 0; i < responseArray.length(); i++) {
                 JSONObject article = responseArray.getJSONObject(i);
+
                 String section = article.getString("sectionName");
+                String title = article.getString("webTitle");
+                String date = article.getString("webPublicationDate");
+                String url = article.getString("webUrl");
+
                 JSONObject fields = article.getJSONObject("fields");
-                String title = fields.getString("headline");
-                String author = fields.getString("byline");
-                String date = fields.getString("firstPublicationDate");
-                String url = fields.getString("shortUrl");
                 Bitmap thumbnail = null;
+                String author = fields.getString("byline");
                 try {
                     thumbnail = getThumbnail(fields.getString("thumbnail"));
                 } catch (IOException e) {

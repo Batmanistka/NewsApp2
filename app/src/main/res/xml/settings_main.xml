@@ -12,7 +12,7 @@
 
     <PreferenceCategory
         android:summary="Favourites categories"
-        android:title="Choose categories" >
+        android:title="Choose categories">
 
         <CheckBoxPreference
             android:key="business"
